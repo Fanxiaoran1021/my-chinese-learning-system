@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>学习记录</title>
+</head>
+<body>
+    <h2>学习记录管理</h2>
+    <a href="./index.html">返回首页</a>
+    <div>
+        <h4>添加学习记录</h4>
+        用户ID:<input id="uid"><br>
+        词汇ID:<input id="vid"><br>
+        状态:<input id="status"><br>
+        <button onclick="addRecord()">保存记录</button>
+    </div>
+<script>
+async function addRecord(){
+    let data={
+        user_id:Number(document.getElementById("uid").value),
+        vocab_id:Number(document.getElementById("vid").value),
+        status:document.getElementById("status").value
+    }
+    await fetch("/api/record",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(data)
+    })
+    alert("记录已保存");
+}
+</script>
+</body>
+</html>
